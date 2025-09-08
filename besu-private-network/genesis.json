@@ -1,0 +1,14 @@
+{
+  "config": 
+  {
+    "chainId": 2023,
+    "constantinopleBlock": 0,
+    "ethash": {}
+  },
+  "alloc": 
+  {
+    "0xa9597c0ac6aa64ffae76087556b8e7e9a10d2073": {"balance": "1000000000000000000000"} 
+  },
+  "difficulty": "0x1",
+  "gasLimit": "0x10000000"
+}

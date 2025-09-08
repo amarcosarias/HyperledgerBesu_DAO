@@ -1,0 +1,30 @@
+version: '3.8'  # Especifica la versión de Docker Compose
+
+services:
+  besu:
+    image: hyperledger/besu:latest  # Imagen de Hyperledger Besu más reciente
+    container_name: besu_node  # Nombre del contenedor 
+
+    ports:
+      - 8545:8545  # Puerto RPC HTTP para interactuar con el nodo
+      # - 30303:30303  # Puerto P2P para la comunicación entre nodos, no es necesario, solo un nodo
+
+    # No define carpetas dentro del contenedor, sino qué carpetas están sincronizadas entre tu máquina y el contenedor 
+    volumes:
+      - ./data:/var/lib/besu  # En local (directorio donde hago docker-compose) tengo data y dentro del contenedor será accesible como /var/lib/besu
+      - ./genesis.json:/var/lib/besu/genesis.json  # En local tengo genesis.json y el contenedor lo ve en /var/lib/besu/genesis.json
+
+    command:
+      - --network-id=2023  # Define el ID de la red Ethereum (único)
+      - --genesis-file=/var/lib/besu/genesis.json  # Especifica el archivo de génesis (punto de arranque, configuración inicial del blockchain)
+      - --data-path=/var/lib/besu  # Define la ruta donde se almacenan los datos del nodo
+      - --miner-enabled  # Habilita la minería en el nodo
+      - --miner-coinbase=0xA9597c0AC6Aa64FfAE76087556B8E7E9a10D2073  # Dirección que recibirá las recompensas de minería (Cuenta Metamask)
+      - --min-gas-price=0 # Permite que las transacciones se procesen sin pagar gas. 
+      - --rpc-http-enabled  # Activa la API RPC HTTP para interactuar con el nodo (Metamask, frontend)
+      - --rpc-http-api=ETH,NET,WEB3,DEBUG,TXPOOL,ADMIN,MINER  # Define qué APIs estarán habilitadas en RPC HTTP
+      - --host-allowlist="*"  # Permite accesos desde cualquier host (en producción, restringir)
+      - --rpc-http-cors-origins="all"  # Permite peticiones desde cualquier origen (Es como decir, “acepta cualquier navegador”)
+      - --rpc-http-port=8545  # Expone la API HTTP en el puerto 8545.
+      - --p2p-enabled=false  # Desactiva la comunicación P2P. Evita que el nodo busque pares.
+      - --sync-mode=FULL  # Asegura la sincronización completa de la cadena.   
