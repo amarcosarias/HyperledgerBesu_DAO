@@ -1,4 +1,4 @@
-# 🏛️ Red Blockchain Privada con Hyperledger Besu y DAO dApp
+# 🏛️ Red Blockchain Privada con Hyperledger Besu y dApp (DAO)
 
 Este proyecto de **Trabajo de Fin de Máster** se centra en el **diseño y despliegue de una red blockchain privada con Hyperledger Besu**, junto con una **dApp** donde se compila y despliega un **Smart Contract** que implementa la lógica de una DAO.
 
