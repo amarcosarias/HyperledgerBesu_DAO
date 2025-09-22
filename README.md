@@ -31,7 +31,7 @@ El trabajo proporciona una infraestructura reproducible y funcional que incluye:
 
 La siguiente figura muestra la arquitectura general de la solución:
 
-![Arquitectura del Proyecto](arquitectura.png)
+![Arquitectura del Proyecto](ArqDAO.png)
 
 ---
 
